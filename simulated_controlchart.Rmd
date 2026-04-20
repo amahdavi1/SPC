@@ -1,0 +1,55 @@
+---
+title: "Simulated SPC Dashboard"
+author: "Armin Mahdavi"
+date: "`r Sys.Date()`"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(shiny)
+library(ggplot2)
+```
+
+```{r,echo=FALSE}
+library(ggplot2)
+generated <- function(n = 100) {data.frame(Time = 1:n,Value = rnorm(n, mean = 50, sd = 5))}
+
+ui <- fluidPage(
+  sidebarLayout(sidebarPanel(sliderInput("n", "Number of Observations:", 50, 200, 100),numericInput("ucl_mult", "UCL/LCL Multiplier,k (σ):", 3)),
+    mainPanel(
+      plotOutput("controlChart"),
+      verbatimTextOutput("summary"))))
+
+server <- function(input, output) {
+  
+  data <- reactive({generated(input$n)})
+  
+  stats <- reactive({
+    df <- data()
+    mean_val <- mean(df$Value)
+    sd_val <- sd(df$Value)
+    
+    list(mean = mean_val,
+      ucl = mean_val + input$ucl_mult * sd_val,
+      lcl = mean_val - input$ucl_mult * sd_val)})
+  
+  output$controlChart <- renderPlot({
+    df <- data()
+    s <- stats()
+    
+    ggplot(df, aes(Time, Value)) +
+      geom_line(color="darkgrey") +
+      geom_point(aes(color = Value > s$ucl | Value < s$lcl)) + 
+      scale_color_manual(values = c("FALSE" = "blue", "TRUE" = "red")) +
+      geom_hline(yintercept = s$mean, linetype = "dashed", color="darkgrey") +
+      geom_hline(yintercept = s$ucl, color = "darkgrey") +
+      geom_hline(yintercept = s$lcl, color = "darkgrey") +
+      labs(title = "I-MR Control Chart of Simulated Data", color = "Out of Control") +
+      theme_minimal()})
+  
+  output$summary <- renderPrint({summary(data()$Value)})}
+
+shinyApp(ui = ui, server = server)
+```

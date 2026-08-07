@@ -1,9 +1,16 @@
 #SPC Dashboard
 
-Live App:
+Live App 1:
 https://amahdavi.shinyapps.io/SPC_IMRChart_Dashboard/
 
 Description:
 This Shiny app has two features:
 1. A slider input and a standard deviation multiplier input for an Individuals Control chart, simulating how I-Charts change with new random data over time.
-2. allows input data and generates I-MR control charts. as well as a slider input for a separate Individual Control Chart and 
+2. A box that allows input data and generates I-MR control charts, simulating how an I-MR chart pair updates in real time with new data points.
+
+
+Live App 2:
+https://amahdavi.shinyapps.io/polygon_centroid/
+
+Description:
+This Shiny app determines the centroid of an arbitrary polygon created in real time. The polygon can be created either by importing a CSV file or by entering the Cartesian coordinates of data points.

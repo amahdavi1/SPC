@@ -8,7 +8,7 @@ This Shiny app has two features:
 1. A slider input and a standard deviation multiplier input for an Individuals Control chart, simulating how I-Charts change with new random data over time.
 2. A box that allows input data and generates I-MR control charts, simulating how an I-MR chart pair updates in real time with new data points.
 
-
+#Polygon Centroid Computation Widget
 Live App 2:
 https://amahdavi.shinyapps.io/polygon_centroid/
 

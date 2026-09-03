@@ -1,7 +1,7 @@
 #SPC Dashboard
 
 Live App 1:
-https://amahdavi.shinyapps.io/SPC_IMRChart_Dashboard/
+https://amahdavi.shinyapps.io/simulated_spc_dashboard/
 
 Description:
 This Shiny app has two features:

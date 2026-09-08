@@ -13,4 +13,4 @@ Live App 2:
 https://amahdavi.shinyapps.io/polygon_centroid/
 
 Description:
-This Shiny app determines the centroid of an arbitrary polygon created in real time. The polygon can be created either by importing a CSV file or by entering the Cartesian coordinates of data points.
+This app determines the centroid of an arbitrary polygon created in real time. The polygon can be created either by importing a CSV file or by entering the Cartesian coordinates of data points. It helps visualize the centroid of shapes, even when that shape is not symmetric or evenly distributed. For some shapes, the centroid sometimes lies outside the boundaries.
